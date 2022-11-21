@@ -19,7 +19,7 @@ public class Paging {
 	// 7.한계수체크 변수
 	int limit = 0;
 	// 8.파라미터 형변환 변수
-	int pageSeq = 0;
+	public int pageSeq = 0;
 
 	public Paging() {
 		JDBConnector jdbc = new JDBConnector();

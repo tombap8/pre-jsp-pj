@@ -1,5 +1,6 @@
 <%@page import="common.Paging"%>
 <%@page import="common.JDBConnector"%>
+<%@page import="org.apache.commons.codec.digest.DigestUtils"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- DB연결 객체 임포트 필수! -->
@@ -82,7 +83,13 @@
 			// executeQuery() 쿼리실행 메서드
 
 			// 일련번호용 변수
+			// 페이지에 따른 시작일련번호 구하기
 			int listNum = 1;
+			if(paging.startNum != 1) 
+				listNum = (paging.pageSeq-1) * paging.onePageCnt + 1;
+				// (2-1) * 3 + 1 = 4
+				// (3-1) * 3 + 1 = 7
+				// (4-1) * 3 + 1 = 10
 
 			/// 결과셋에 레코드가 있는 동안 계속 순회함!
 			// rs.getString(컬럼명)
