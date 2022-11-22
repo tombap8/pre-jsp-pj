@@ -11,7 +11,7 @@
   </welcome-file-list>
   
   <context-param>
-    <param-name>MyData</param-name>
-    <param-value>this.is.my.data</param-value>
+    <param-name>perOnePage</param-name>
+    <param-value>5</param-value>
   </context-param>
 </web-app>
