@@ -3,9 +3,6 @@
 <%@page import="org.apache.commons.codec.digest.DigestUtils"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- DB연결 객체 임포트 필수! -->
-<%@page import="java.sql.*"%>
-<%@page import="common.JDBConnector.*"%>
 <!DOCTYPE html>
 <html>
 <head>
