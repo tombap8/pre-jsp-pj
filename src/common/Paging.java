@@ -37,7 +37,6 @@ public class Paging {
 				// getInt(1)은 정수형 결과를 가져옴!
 			} ////// if ///////////
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// 15-2. 리스트 그룹수 : 전체개수 ÷ 페이지당개수
