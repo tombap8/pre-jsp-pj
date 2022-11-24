@@ -129,7 +129,7 @@
                     (get방식:url로 키=값 쌍으로 데이터전달)
                     (post방식:페이지로 데이터를 전달하는 숨김방식)
                 -->
-                    <form action="process.php" method="post" class="logF">
+                    <form action="process/loginSet.jsp" method="post" class="logF">
                         <!-- 아이디박스 -->
                         <div class="minput">
                             <label for="mid">아이디</label>

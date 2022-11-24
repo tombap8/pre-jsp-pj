@@ -119,7 +119,7 @@
                 </header>
                 <!-- 2-2. 갤러리 페이지 컨텐츠 박스 -->
                 <section class="scont">
-                    <form action="process.php" method="post" class="logF">
+                    <form action="process/ins.jsp" method="post" class="logF">
                         <ul>
                             <!-- 아이디 -->
                             <li>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="common.SHA256" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,33 +12,47 @@
 <%
 	//POST 방식의 한글처리 : 이것 안쓰면 한글깨짐!!!
 	request.setCharacterEncoding("UTF-8");
+	SHA256 sha = new SHA256();
 	
 	try{
+		// 1.아이디
+		String mid = request.getParameter("mid");
+		// 2.비번
+		String mpw = request.getParameter("mpw");
+		// 3.이름
+		String mnm = request.getParameter("mnm");
+		// 4.성별
+		String gen = request.getParameter("gen");
+		// 5-1.이메일 앞주소
+		String email1 = request.getParameter("email1");
+		// 5-2.이메일 뒷주소
+		String seleml = request.getParameter("seleml");
+		// 5-3.직접입력 이메일 뒷주소
+		String email2 = request.getParameter("email2");
 		
-		// 파라미터 정보 가져오기
-		// 전송한 페이지인 insert.jsp의 form태그 안의 input요소들의
-		// name 속성명으로 읽어온다!
-		// request객체를 사용한다 -> HttpServletRequest 객체로 생성함!
-		// request는 "요청"이라는 뜻!
-		// 파라미터를 요청한다 -> 파라미터는 전달값을 말함!
-		// 가져오는 메서드는? -> getParameter(name속성값)
-		// ->>> request.getParameter(name속성값)
-		String dname = request.getParameter("dname");
-		String actors = request.getParameter("actors");
-		String broad = request.getParameter("broad");
-		String gubun = request.getParameter("gubun");
-		String stime = request.getParameter("stime");
-		String total = request.getParameter("total");
+		// 암호화
+		String shampw = sha.encSha256(mpw);
+		
+
+		// 해쉬암호 : 최근에는 대부분 SHA256을 사용한다.
+		// 해쉬는 복호화가 되지않는다.
+		// 암호화와 복호화가 되는 기술은 base64
+
+		// 해쉬와 해쉬를 비교하여 검증
+		// 해쉬는 고정길이라서 같은 값이 나올 수 있다 (충돌)
+		// 뚫릴 수 있다
 		
 		// 넘어온값 찍기!
 		out.println(
 			"<h1>" +
-			"♣ dname : " + dname + "<br>" +
-			"♣ actors : " + actors + "<br>" +
-			"♣ broad : " + broad + "<br>" +
-			"♣ gubun : " + gubun + "<br>" +
-			"♣ stime : " + stime + "<br>" +
-			"♣ total : " + total + "</h1>"
+			"♣ mid : " + mid + "<br>" +
+			"♣ mpw : " + mpw + "<br>" +
+			"♣ sha256 : " + shampw + "<br>" +
+			"♣ mnm : " + mnm + "<br>" +
+			"♣ gen : " + gen + "<br>" +
+			"♣ email1 : " + email1 + "<br>" +
+			"♣ seleml : " + seleml + "<br>" +
+			"♣ email2 : " + email2 + "</h1>"
 		);
 		
 		
@@ -66,9 +81,9 @@
      	// ResultSet rs = null;
      	
      	// 7. 쿼리문작성 할당
-     	String query = "INSERT INTO `drama_info`" +
-     	"(`dname`, `actors`, `broad`, `gubun`, `stime`, `total`)"+ 
-     	" VALUES (?,?,?,?,?,?)";
+     	String query = "INSERT INTO `member` "+
+     			"(`mid`, `mpw`, `name`, `gen`, `email1`, `email2`) "+
+     			"VALUES (?,?,?,?,?,?)";
      	// 쿼리문작성시 삽입될 데이터 부분을 물음표(?)로 처리하면
      	// PreparedStatement 객체에서 이부분을 입력하도록 해준다!
      	
@@ -94,12 +109,13 @@
      	// 순번은 1부터 시작!
      	// 데이터형이름은 대문자로 시작
      	// 예) setString(), setInt(), setDouble(),...
-     	pstmt.setString(1, dname);
-     	pstmt.setString(2, actors);
-     	pstmt.setString(3, broad);
-     	pstmt.setString(4, gubun);
-     	pstmt.setString(5, stime);
-     	pstmt.setString(6, total);
+     	pstmt.setString(1, mid);
+     	pstmt.setString(2, shampw);
+//      	pstmt.setString(2, mpw);
+     	pstmt.setString(3, mnm);
+     	pstmt.setString(4, gen);
+     	pstmt.setString(5, email1);
+     	pstmt.setString(6, email2);
      	// 물음표 순서대로 값을 셋팅해 준다!
      	
      	// 13. 쿼리를 DB에 전송하여 실행한다.
@@ -114,12 +130,12 @@
      	
      	// 15. 입력성공시 메시지 띄우기
      	// JS alert창 띄우고 확인시 list페이지로 돌아가기!
-     	out.println(
-     		"<script>"+		
-     		"alert('저장성공!');"+		
-     		"location.href='../list.jsp';"+		
-     		"</script>"
-     	);
+     	//out.println(
+     	//	"<script>"+		
+     	//	"alert('회원가입 성공!');"+		
+     	//	"location.href='../index.jsp';"+		
+     	//	"</script>"
+     	//);
      	
      	// [ 입력시 한글 깨짐 문제발생 해결 ]
      	// -> 입력성공후 한글이 물음표(?)로 입력된 경우 원인은?
