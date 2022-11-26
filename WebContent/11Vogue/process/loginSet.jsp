@@ -70,32 +70,34 @@
 			// 레코드가 있으나 비밀번호와 비교(소금쳐서 변환함!)
 			String shampw = sha.encSha256(mpw);
 			
-			out.println(
-					"<h1>" +
-					"♣ 입력아이디 : " + mid + "<br>" +
-					"♣ 디비비번 : " + dbmpw + "<br>" +
-					"♣ 변환비번 : " + shampw + "<br>" +
-					"♣ 입력비번 : " + mpw + "<br>" +
-					"♣ 디비이름 : " + name + "<br>" +
-					"♣ 디비권한 : " + auth + "</h1>"
-				);
+// 			out.println(
+// 					"<h1>" +
+// 					"♣ 입력아이디 : " + mid + "<br>" +
+// 					"♣ 디비비번 : " + dbmpw + "<br>" +
+// 					"♣ 변환비번 : " + shampw + "<br>" +
+// 					"♣ 입력비번 : " + mpw + "<br>" +
+// 					"♣ 디비이름 : " + name + "<br>" +
+// 					"♣ 디비권한 : " + auth + "</h1>"
+// 				);
 			
 			if(dbmpw.equals(shampw)){
-				out.print("<h1>비밀번호가 일치합니다!</h1>");
+				out.print("ok");
+// 				out.print("<h1>비밀번호가 일치합니다!</h1>");
 				session.setAttribute("name", name);
-				response.sendRedirect("../index.jsp");
+				session.setAttribute("auth", auth);
+// 				response.sendRedirect("../index.jsp");
 			}
 			else{
-				out.print("<h1>비밀번호가 다릅니다!</h1>");
+// 				out.print("<h1>비밀번호가 다릅니다!</h1>");
+				out.print("again");
 			}
 			
 		} //////////// if //////////////
 		else{
-			out.print("<h1>아이디가 존재하지 않습니다!</h1>");
+			out.print("no");
+// 			out.print("<h1>아이디가 존재하지 않습니다!</h1>");
 		}
-		
-		
-
+	
 		// 14. 연결해제하기
 		jdbc.close();
 

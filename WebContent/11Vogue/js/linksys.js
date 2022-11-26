@@ -51,6 +51,8 @@ $(() => {
         let atxt = $(this).text().trim();
         // console.log(atxt);
 
+        if(atxt === "로그아웃") return;
+
         // 2. 이동할 페이지 주소 할당하기
         let url;
         switch (atxt) {

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 session.invalidate();
-	out.println("<script>alert('로그아웃되었습니다');location.replace('../index.jsp');</script>");
+	out.println("ok");
 // 	response.sendRedirect("../index.jsp");
 
 %>
