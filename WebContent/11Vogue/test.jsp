@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="common.Test" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,12 @@
 </script>
 </head>
 <body>
-
+<%
+		// POST 방식의 한글처리
+		request.setCharacterEncoding("UTF-8");
+	Test tt = new Test();
+	out.println("<h1>요기요!"+tt.myFn("허걱")+"</h1>");
+%>
 <button id="my" onclick="getit()">클릭!!!</button>
 </body>
 </html>
