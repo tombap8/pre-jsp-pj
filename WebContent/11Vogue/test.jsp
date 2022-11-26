@@ -21,7 +21,7 @@
 		// POST 방식의 한글처리
 		request.setCharacterEncoding("UTF-8");
 	Test tt = new Test();
-	out.println("<h1>요기요!"+tt.myFn("허걱")+"</h1>");
+	out.println("<h1>요기요!"+tt.myFn("어서오시오!!!")+"</h1>");
 %>
 <button id="my" onclick="getit()">클릭!!!</button>
 </body>
