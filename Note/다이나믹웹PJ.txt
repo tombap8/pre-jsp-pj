@@ -1,7 +1,5 @@
 [Dynamic Web Project의 폴더구조]
 
- 
-
 1. WebContent
 HTML이나 JSP와 같이 컴파일 되지 않아도 되는 파일들
 
@@ -31,6 +29,14 @@ web.xml에 기록해야함!)
 
 1) lib
 - jdbc와 같은 jar파일이 위치함
+-> 여기에 DB연결 커넥터 jar파일을 넣는다!
+우리는 MY-SQL 이니까 mysql-connector.jar를 넣는다!
+(원래는 tomcat서버의 lib폴더에 등록해야하지만
+소스 배포시에 서버 셋팅할때 이것이 빠지는 경우가 생기므로
+이런 문제발생을 막기위해 다이나믹 웹 프로젝트에서는
+WEB-INF>lib 폴더를 읽어서 웹서버가 구동하도록 
+설계했다. 그래서 여기에만 등록해도 DB연결이 가능해 진다!)
+
 2) Java Resources
 - 자바 소스 전용저장소
 - 하위 폴더 : src

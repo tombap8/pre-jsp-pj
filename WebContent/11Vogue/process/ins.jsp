@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="common.JDBConnector"%>
-<%@ page import="common.SHA256"%>
-
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"  %>
+<%@ page import="common.JDBConnector" %>
+<%@ page import="common.SHA256" %>
 <%
+	// ### 회원가입 입력처리 페이지 ###
+	
 	//POST 방식의 한글처리 : 이것 안쓰면 한글깨짐!!!
 	request.setCharacterEncoding("UTF-8");
 	
@@ -46,9 +47,14 @@
 // 			"♣ seleml : " + seleml + "<br>" +
 // 			"♣ email2 : " + email2 + "</h1>"
 // 		);
+		
+		// 선택박스값이 "free"일 경우 email2값을 email2에 입력하고
+		// 아닐경우에는 seleml값을 email2에 입력한다!
+		if(!seleml.equals("free")){ // !을 붙여서 false일때 true임
+			// "free"가 아닐경우엔 email2에 seleml을 넣어준다!
+			email2 = seleml; 
+		} ////// if ////////
 
-		
-		
      	
      	// 7. 쿼리문작성 할당
      	String query = "INSERT INTO `member` "+
@@ -66,10 +72,6 @@
      	// - 중간에 쿼리문에 넣을 값을 추가할 수 있음!
      	
      	// 12. 준비된 쿼리에 물음표부분을 처리하는 순서!
-     	// set데이터형(순번, 값변수)
-     	// 순번은 1부터 시작!
-     	// 데이터형이름은 대문자로 시작
-     	// 예) setString(), setInt(), setDouble(),...
      	jdbc.pstmt.setString(1, mid);
      	jdbc.pstmt.setString(2, shampw);
      	jdbc.pstmt.setString(3, mnm);
@@ -79,43 +81,18 @@
      	// 물음표 순서대로 값을 셋팅해 준다!
      	
      	// 13. 쿼리를 DB에 전송하여 실행한다.
-     	jdbc.pstmt.executeUpdate(); // insert문을 실행하는 메서드는?
-     	// executeQuery() 쿼리실행 메서드 -> select 데이터셋을 가져옴
-		// executeUpdate() 쿼리실행 메서드 -> insert문을 실행함     	
+     	jdbc.pstmt.executeUpdate();
   
      	// 14. 연결해제하기
      	jdbc.close();
      	
-     	// 15. 입력성공시 메시지 띄우기
-     	// JS alert창 띄우고 확인시 list페이지로 돌아가기!
+     	// 15. 입력성공시 리턴할 메시지찍기
      	out.println("ok");
      	
-     	// [ 입력시 한글 깨짐 문제발생 해결 ]
-     	// -> 입력성공후 한글이 물음표(?)로 입력된 경우 원인은?
-     	// DB를 살펴보면 utf8_general_ci 형식으로 잘 만들어져있음!
-     	// 원인은 MySQL 환경설정파일에 있다!!!
-     	
-     	// XAMPP 패널에 config버튼 클릭시 my.ini파일에서 "utf"검색
-     	// 결과: utf8mb4 가 설정되어 있음 이것을 모두 utf8로 변경함!
-     	// 참고주의) #이 앞에 있는 문장은 주석문이므로 고칠필요가 없다!
-     	
-     	// [아래 3가지를 변경함!]
-     	// default-character-set=utf8
-     	// character-set-server=utf8
-     	// collation-server=utf8_general_ci
-     	
-     	// 변경후 반드시 MySQL 서버를 내렸다 올려야 my.ini를 다시 읽는다!
-     	
-     	// 실제 my.ini 위치는
-     	// C:\xampp\mysql\bin\my.ini
-	       
-		
 	} ////////// try //////////
 	catch(Exception e){
- 		// DB연결 실패시 여기로 들어옴!
+ 		// 실패 메시지 출력(전달값)
  		out.println("no");
-//  		out.println(e.toString());
- 		// toString() 문자데이터로 변환하는 메서드
 	} ///////// catch //////////
 
 

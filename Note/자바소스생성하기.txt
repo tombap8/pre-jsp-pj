@@ -1,0 +1,25 @@
+[ 자바소스 생성하기 ]
+1. Dynamic Web Project 에서는 자바소스는
+   Java Resources 에 생성한다.
+   (이클립스 폴더와 실제 폴더는 다르게 표시됨)
+   -> 실제는 root/src -> 자바원본파일(.java)
+   -> root/build/classes -> 컴파일된 자바파일(.class)
+   
+2. 자바파일은 기능별 구분을 위해 패키지를 만들어서 넣음
+
+3. common 패키지를 Java Resources>src에 오른쪽버튼
+-> New 중에서...
+-> package 선택 : 대화창에서 common 패키지명 쓴다!
+(주의: 만들고 나면 프로젝트 익스플로러가 제대로 안보인다.
+오른쪽 버튼 새로고침해준다!)
+
+4. common 패키지에서 오른쪽 버튼 New... class선택
+
+5. 자바 소스 원본 파일이 생성되어 코딩후 저장하면 자동컴파일 되어
+build/classes 폴더에 class파일이 생성됨.
+
+참고)
+java파일이 자동 빌드되어 class 파일이 생성되는 곳은
+Root 밑에 .classpath 파일에 셋팅되어 있다!
+아래 코드로 셋팅됨!
+<classpathentry kind="output" path="build/classes"/>

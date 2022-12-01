@@ -1,0 +1,39 @@
+#######################
+[ 백앤드 소스로 변환하기 ]
+#######################
+
+1. 소스 위치시키기
+	html소스를 카피하여 WebContent폴더 아래에 위치시킨다.
+	
+2. 환경설정 인코딩 확인하기
+	(1) Preference파일에서 General>Content Types를 선택
+	(2) Text 아래 JSP 를 선택하여 클릭
+	(3) 대화창 하단 Default Encoding 설정이 
+		"UTF-8"이 아니면 넣은후 Update버튼으로 반영해 준다
+	(4) Apply and Close 버튼을 클릭하여 나온다!
+	
+3. 확장자 변경하기 
+	카피해 온 html 파일의 확장자를 "jsp"로 변경한다
+	
+4. 상단 페이지 디렉티브 삽입하기
+	각 파일 상단에 jsp 페이지 디렉티브를 삽입한다
+	
+	코드: 
+	<%@ page language="java" 
+	contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+5. 인클루드 하기
+	(1) WebContent 폴더 하위에 include 폴더를 만든다
+	(2) 하위에 내용이 빈 top.jsp와 info.jsp 파일을 만든다
+		(이때 상단에 페이지 디렉티브는 살려준다!->일부한글깨짐발생)
+	(3) 기존 소스 상단영역을 top.jsp로 잘라내어 붙인후 저장한다.
+	(4) 기존 소스 하단영역을 info.jsp로 잘라내어 붙인후 저장한다.
+	(5) 기존 페이지 상단영역과 하단영역 부분에 
+		아래와 같이 include 디렉티브를 코딩한다.
+		
+		<!-- 1. 상단영역 -->
+        <%@ include file="include/top.jsp" %>
+        <!-- 3. 하단영역 -->
+        <%@ include file="include/info.jsp" %>
+	

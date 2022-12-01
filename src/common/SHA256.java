@@ -13,10 +13,13 @@ import java.security.MessageDigest;
 
 
 public class SHA256 {
-
+	
+	// 소금치기(솔트기법) - 기존 암호화시 특정문자를 섞어서
+	// 예측 불가능하게 만들기 위한 해시암호화의 추가 기법
+	// 좀더 보안성이 높다!!!
 	private final static String salt = "빠글빠글";
 	
-	public String encSha256(String pwd) {
+	public String encSha256(String pwd) { // pwd : 일반문자 비밀번호를 받는다!
 
 		// 결과변수
 		String result = "";
@@ -88,6 +91,7 @@ public class SHA256 {
 			e.printStackTrace();
 		}
 		
+		// 암호화된 결과 문자값 리턴!
 		return result;
 
 	} ///// method ///

@@ -1,0 +1,42 @@
+[ 자바소스 생성 전 반드시 점검할것! ]
+
+1.자바소스는 컴파일 되어 class로
+  생성되어 읽혀진다. 따라서 이것은
+  톰캣서버에서 처리되므로 이클립스 서버
+  설정에서 연결된 jre 즉 jdk 링크설정을
+  정확히해줘야 에러가 나지 않는다!
+  (파일을 못찾는 에러가남!)
+  
+2.아래 두가지를 설정해준다!
+  [1.프로젝트 속성 설정]
+  (1) 이클립스 프로젝트 폴더에서 오른쪽버튼
+     -> properties 선택
+  (2) 왼쪽분류에서 Java Build Path 선택
+  (3) 오른쪽 내용에서 Libraries 탭 선택
+  (4) Classpath 열고 톰캣서버가 있는지 확인!
+  -> 없으면 추가!!!
+  (5) Add Library... 버튼 클릭
+  (6) Server Runtime 선택 -> Next버튼클릭
+  (7) 리스트에 아파치 톰캣서버가 보이면 선택!
+  -> Finish 버튼으로 마무리
+  (8) 닫기전 Apply and Close로 적용하고 닫기!
+  
+  [2.서버설정에서 jre경로 잡아주기!]->중요!!!
+  (1)Window 메뉴에서 Preferences 선택
+  (2)왼쪽메뉴에서 Server > Runtime Environments
+  (3)리스트에있는 톰캣서버를 클릭하여 선택한다.
+  (4)Edit버튼 클릭후 대화창에서 
+     JRE 항목에 Workbench default JRE를 쓰지말고...
+  (5)Installed JREs... 
+    -> Add... 
+    -> Standard VM 선택 
+    -> Next Directory...
+    -> 찾아서 JDK11위치 폴더위치 찿고 Finish  
+  (6) (4)번항목에서 JRE 에서 방금 잡아놓은 jdk-11 이런것을 선택함!
+  
+  ->>> 위의 2가 셋팅을 맞추고 나면 폴더에 X표시가 없어짐!
+  
+  
+  
+	
+	
