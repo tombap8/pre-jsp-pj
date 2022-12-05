@@ -6,13 +6,17 @@ public class Paging {
 	PagingDTO pgdto = new PagingDTO();
 	// DB연결 클래스 생성하기
 	JDBConnector jdbc = new JDBConnector();
+	// 파라미터 공유
+	public static String colPm,keyPm;
 
 	///////////////////////
 	// 생성자 메서드 /////////
 	///////////////////////
 	// 역할: 인스턴스 생성시 바로 실행하므로 기본 변수값을 모두 셋팅한다!
-	public Paging(String tbName) { // tbName - 페이징대상테이블
+	public Paging(String tbName, String pmCol,String pmKey) { // tbName - 페이징대상테이블
 
+		colPm = pmCol;
+		keyPm = pmKey;
 		/********************************* 
 		15. 페이징 링크 생성하기
 		______________________________
@@ -30,6 +34,14 @@ public class Paging {
 			// 15-1. 전체 레코드 수 구하기
 			// 레코드수 구하기 쿼리
 			String cntQuery = "SELECT COUNT(*) FROM "+ tbName;
+			
+			// 1.5. 만약 검색어가 있으면 쿼리 변경!
+			if(pmKey!=null) {
+				cntQuery += " WHERE `"+pmCol+"` "
+						+ "LIKE \"%"+pmKey+"%\"";
+				System.out.println("널이 아냐!");
+			}
+			
 			// 쿼리를 PreparedStatement에 넣기
 			jdbc.pstmt = jdbc.conn.prepareStatement(cntQuery);
 			// 쿼리실행! -> 개수정보를 리턴받아 ResultSet에 담는다!
@@ -125,7 +137,11 @@ public class Paging {
 			} /// if ////
 			else {
 				// pgCode변수에 모두 넣는다
-				pgCode += "<a href='list.jsp?pgnum=" + (i + 1) + "'>" + (i + 1) + "</a>";
+				pgCode += "<a href='list.jsp?pgnum=" + (i + 1); 
+				if(keyPm!=null) {
+					pgCode += "&col="+colPm+"&key="+keyPm;
+				}
+				pgCode += "'>" + (i + 1) + "</a>";
 			} /// else //////
 
 			// 사이바 찍기 

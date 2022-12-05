@@ -3,6 +3,7 @@ package vogue;
 import common.JDBConnector;
 import common.Paging;
 import common.PagingDTO;
+import jdk.nashorn.internal.runtime.regexp.joni.ast.ConsAltNode;
 
 /////////////////////////////////////
 // MVC 모델에서 컨트롤러 역할을 하는 클래스//
@@ -19,7 +20,7 @@ public class ListController {
 	JDBConnector jdbc = new JDBConnector();
 
 	// 페이징 클래스 생성 : 생성시 페이징 대상 테이블명을 보낸다!
-	Paging pg = new Paging("member");
+	Paging pg = null;
 
 	// 페이징 DTO 클래스 생성
 	PagingDTO pgdto = new PagingDTO();
@@ -30,16 +31,35 @@ public class ListController {
 	///////////////////////////////////
 	// 리스트 뷰를 구성하여 리턴하는 메서드 ///
 	///////////////////////////////////
-	public String setList(String pgNum) {
-		// pgNum은 리스트 페이지에서 생성시 파라미터값을 전달해 준다!
+	// pgNum은 리스트 페이지에서 생성시 파라미터값을 전달해 준다!
+	// 검색어 관련 파라미터 pmCol, pmKey 를 전달해 준다!
+	public String setList(String pgNum, String pmCol, String pmKey) {
+		// pgNum - 페이지번호 / pmCol - 검색항목 / pmKey - 검색어
 
+		// 파라미터 전달값 확인!
+		System.out.println("페이지번호:"+pgNum
+				+"\n검색항목:"+pmCol+"\n검색어:"+pmKey);
+		
+		pg = new Paging("member",pmCol,pmKey);
+		
 		// DB레코드결과변수
 		String result = "";
 
 		try {
 
 			// 1. 쿼리문작성 할당
-			String query = "SELECT * FROM `member` ORDER BY `name` ASC LIMIT  ?,?";
+			String query = 
+					"SELECT * FROM `member` "+
+					"ORDER BY `name` ASC LIMIT  ?,?";
+			
+			// 1.5. 만약 검색어가 있으면 쿼리 변경!
+			if(pmKey!=null) {
+				query = "SELECT * FROM `member` "
+						+ "WHERE `"+pmCol+"` "
+						+ "LIKE \"%"+pmKey+"%\" "
+						+ "ORDER BY `name` ASC LIMIT  ?,?";
+				System.out.println("널이 아냐!");
+			}
 
 			// 2. 쿼리문 연결 사용준비하기
 			jdbc.pstmt = jdbc.conn.prepareStatement(query);
