@@ -91,9 +91,9 @@
     if(!strcmp($mode,"form")){
     ?>
 
-    <form name="write_form" method="post" action="write.php?mode=post">
+    <form name="write_form" method="post" action="write.jps?mode=post">
         <table class="dtblview">
-            <caption>방명록 게시판</caption>
+            <caption>자유 게시판</caption>
             <tr>
                 <td width="100">
                     이름
@@ -151,7 +151,7 @@
                 <td>
                     <input type="button" onclick="check_form();" value="입력 확인">
                     <input type="button" onclick="form.reset();" value="다시 쓰기">
-                    <input type="button" onclick="location.href='list.php'" value="글 목록">
+                    <input type="button" onclick="location.href='list.jsp'" value="글 목록">
                 </td>
             </tr>
         </table>

@@ -60,16 +60,16 @@
 
 ?>
   <form name = "delete_form" method = "post" 
-  action = "delete.php?mode=post&delete_uno=<?=$delete_uno?>">
+  action = "delete.jsp?mode=post&delete_uno=<?=$delete_uno?>">
     <table class="dtbl">
 	<caption>방명록 게시판 - 글 삭제</caption>       
      <tr> 
-        <td align = "center">
+        <td>
           <b><?=$name?></b> 님의 글을 삭제합니다.
         </td>
       </tr>
       <tr> 
-        <td height = "50" align = "center">
+        <td height = "50">
           패스워드
           <input type = "password" name = "passwd" size = "20">
         </td>
