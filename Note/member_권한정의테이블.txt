@@ -1,0 +1,33 @@
+CREATE TABLE `mem_auth` (
+  `idx` int(11) NOT NULL primary key,
+  `auth` char(1) NOT NULL,
+  `auth_name` varchar(50) NOT NULL,
+  `auth_desc` varchar(300) NOT NULL
+);
+
+
+
+INSERT INTO `mem_auth`( `auth`, `auth_name`, `auth_desc`) 
+VALUES ('S','최고관리자','사이트를 폐쇄할 수 있으며 관리자를 임명 또는 해제할 수 있음');
+INSERT INTO `mem_auth`( `auth`, `auth_name`, `auth_desc`) 
+VALUES ('A','일반관리자','관리자를 임명 또는 해제할 수 있음');
+INSERT INTO `mem_auth`( `auth`, `auth_name`, `auth_desc`) 
+VALUES ('M','일반회원','회원게시판의 글쓰기 권한이 있음');
+
+
+
+[ 내부조인 : INNER JOIN ]
+- 두 테이블에서 일치하는 값이 있는 레코드를 선택
+
+((구문))
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name = table2.column_name;
+
+
+
+SELECT `member`.`name`, `mem_auth`.`auth_name`,`mem_auth`.`auth_desc` 
+from `member` INNER JOIN `mem_auth` 
+on `member`.`auth`= `mem_auth`.`auth`;
+
