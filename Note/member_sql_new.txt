@@ -10,3 +10,23 @@ CREATE TABLE `member`(
 `regdate` timestamp not null,
 `auth` char(1) default "M"
 );
+
+-- #####################
+-- member 더미데이터 프로시져
+-- #####################
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS loopInsert$$ -- 같은 이름의 PROCEDURE를 삭제한다.
+CREATE PROCEDURE loopInsert() -- loopInsert 만들기
+BEGIN
+	DECLARE i INT DEFAULT 1;
+	WHILE i <= 500 DO -- 500번 반복한다.
+		INSERT INTO `member`(`mid`, `mpw`, `name`, `gen`, `email1`, `email2`) 
+		VALUES (concat('idset',i),'0a435caa448ab73c73b2284d1cc9d273c896ff5f025971804970233eca2ce0b1',
+		concat('회원명',i),'w',concat('fmail',i),'lmail.co.kr');
+		SET i = i + 1;
+	END WHILE;
+END$$
+DELIMITER $$
+
+-- 이후 CALL loopInsert;를 하여 실행하면 된다.

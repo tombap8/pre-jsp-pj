@@ -8,7 +8,7 @@ public class PagingDTO {
 	// 1.시작 레코드번호 : LIMIT의 시작값
 	private int startNum;
 	// 2.페이지당 레코드개수 : LIMIT의 개수
-	final private int onePageCnt = 3;
+	final private int onePageCnt = 10;
 	// 3.전체 레코드수
 	private int totalCnt;
 	// 4.리스트 그룹수 : 전체개수 ÷ 페이지당개수
@@ -19,6 +19,12 @@ public class PagingDTO {
 	private int pageSeq; // 기본값 1(파라미터가 없으면 1들어감!)
 	// 7.한계수 체크: 나머지가 있고 없고에 따라 1개차이남
 	private int limit;
+	// 8.페이징 단위개수
+	final private int oneBlockCnt = 10;
+	// 9.페이징 그룹수 : 리스트그룹수 ÷ 페이징 단위개수
+	private int blockGroup;
+	// 10.남은 페이징수 : 리스트그룹수 % 페이징 단위개수
+	private int etcBlock;
 
 	// 겟터와 셋터 생성 /////////////////
 	// 1.시작 레코드번호 : LIMIT의 시작값
@@ -67,6 +73,24 @@ public class PagingDTO {
 	}
 	public void setLimit(int limit) {
 		this.limit = limit;
+	}
+	// 8.페이징 단위개수
+	public int getOneBlockCnt() {
+		return oneBlockCnt;
+	}
+	// 9.페이징 그룹수 : (리스트그룹수+남은레코드수) ÷ 페이징 단위개수
+	public int getBlockGroup() {
+		return blockGroup;
+	}
+	public void setBlockGroup(int blockGroup) {
+		this.blockGroup = blockGroup;
+	}
+	// 10.남은 페이징수 : (리스트그룹수+남은레코드수) % 페이징 단위개수
+	public int getEtcBlock() {
+		return etcBlock;
+	}
+	public void setEtcBlock(int etcBlock) {
+		this.etcBlock = etcBlock;
 	}
 
 }

@@ -32,14 +32,14 @@ public class ListController {
 	///////////////////////////////////
 	// pgNum은 리스트 페이지에서 생성시 파라미터값을 전달해 준다!
 	// 검색어 관련 파라미터 pmCol, pmKey 를 전달해 준다!
-	public String setList(String pgNum, String pmCol, String pmKey) {
-		// pgNum - 페이지번호 / pmCol - 검색항목 / pmKey - 검색어
+	public String setList(String pgNum,String bkNum, String pmCol, String pmKey) {
+		// pgNum - 페이지번호 / bkNum - 페이징블록번호 / pmCol - 검색항목 / pmKey - 검색어
 
 		// 파라미터 전달값 확인!
-		System.out.println("페이지번호:"+pgNum
+		System.out.println("페이지번호:"+pgNum+"\n블록번호:"+bkNum
 				+"\n검색항목:"+pmCol+"\n검색어:"+pmKey);
 		
-		pg = new Paging("member",pmCol,pmKey);
+		pg = new Paging("member",bkNum,pmCol,pmKey);
 		
 		// DB레코드결과변수
 		String result = "";
