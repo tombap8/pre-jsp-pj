@@ -3,7 +3,6 @@ package vogue;
 import common.JDBConnector;
 import common.Paging;
 import common.PagingDTO;
-import jdk.nashorn.internal.runtime.regexp.joni.ast.ConsAltNode;
 
 /////////////////////////////////////
 // MVC 모델에서 컨트롤러 역할을 하는 클래스//
