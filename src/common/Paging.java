@@ -143,15 +143,16 @@ public class Paging {
 		// 페이징링크 코드 저장변수
 		String pgCode="";
 		
-		// 블록 시작값
+		// #### 블록 시작값 ####
 		int bkStart = (Integer.parseInt(numBk) - 1) * pgdto.getOneBlockCnt();
-		// 블록 한계값
+		// #### 블록 한계값 ####
 		int bkLimit = Integer.parseInt(numBk) * pgdto.getOneBlockCnt();
-		// 블록 한계값이 리스트그룹수 보다크면 리스트 그룹수로 정한다!(남은 레코드가 있으면 1더함)
+		// #### 블록 한계값이 리스트그룹수 보다크면 리스트 그룹수로 정한다!
+		// (남은 레코드가 있으면 1더함)
 		if(bkLimit > pgdto.getListGroup()) 
 			bkLimit = pgdto.getListGroup()+(pgdto.getEtcRecord()>0?1:0);
 		
-		// 이전블록가기
+		// ######## 이전블록가기 ##########
 		if(Integer.parseInt(numBk)-1 > 0) {
 			pgCode += "<a href='list.jsp?pgnum=" 
 			+ (((Integer.parseInt(numBk)-1)*pgdto.getOneBlockCnt())
@@ -168,7 +169,9 @@ public class Paging {
 		
 		System.out.println("현재블록번호:"+numBk);
 		System.out.println("이전블록:"+(Integer.parseInt(numBk)-1));
-		
+
+		// ########################
+
 		// 15-4. 페이징 링크 코드 만들기
 //		for (int i = 0; i < pgdto.getLimit(); i++) {
 		for (int i = bkStart; i < bkLimit; i++) {
@@ -195,7 +198,7 @@ public class Paging {
 
 		} ////////// for //////////////
 		
-		// 다음블록가기
+		// ##### 다음블록가기 #######
 		if(Integer.parseInt(numBk)+1 < 
 				pgdto.getListGroup()/pgdto.getOneBlockCnt()
 				+pgdto.getEtcBlock()) {
@@ -210,6 +213,7 @@ public class Paging {
 		else {
 			pgCode += " ▷";
 		}
+		// ######################
 		
 		System.out.println("다음블록:"+(pgdto.getBlockGroup()+pgdto.getEtcBlock()));
 		System.out.println("계산:"+(Integer.parseInt(numBk)+1));
