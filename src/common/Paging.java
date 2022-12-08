@@ -13,7 +13,8 @@ public class Paging {
 	// 생성자 메서드 /////////
 	///////////////////////
 	// 역할: 인스턴스 생성시 바로 실행하므로 기본 변수값을 모두 셋팅한다!
-	public Paging(String tbName,String bkNum, String pmCol,String pmKey) { // tbName - 페이징대상테이블
+	public Paging(String tbName,String bkNum, String pmCol,String pmKey) { 
+		// tbName - 페이징대상테이블
 
 		numBk = bkNum;
 		colPm = pmCol;
