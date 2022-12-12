@@ -8,7 +8,7 @@ public class PagingDTO {
 	// 1.시작 레코드번호 : LIMIT의 시작값
 	private int startNum;
 	// 2.페이지당 레코드개수 : LIMIT의 개수
-	final private int onePageCnt = 9;
+	final private int onePageCnt = 11;
 	// 3.전체 레코드수
 	private int totalCnt;
 	// 4.리스트 그룹수 : 전체개수 ÷ 페이지당개수
@@ -20,7 +20,7 @@ public class PagingDTO {
 	// 7.한계수 체크: 나머지가 있고 없고에 따라 1개차이남
 	private int limit;
 	// 8.페이징 단위개수
-	final private int oneBlockCnt = 11;
+	final private int oneBlockCnt = 7;
 	// 9.페이징 그룹수 : 리스트그룹수 ÷ 페이징 단위개수
 	private int blockGroup;
 	// 10.남은 페이징수 : 리스트그룹수 % 페이징 단위개수
